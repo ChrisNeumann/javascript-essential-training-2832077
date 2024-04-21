@@ -16,11 +16,21 @@ const backpack = {
     left: 26,
     right: 26,
   },
+  lidOpen: false,
   toggleLid: function (lidStatus) {
     this.lidOpen = lidStatus;
   },
   newStrapLength: function (lengthLeft, lengthRight) {
     this.strapLength.left = lengthLeft;
     this.strapLength.right = lengthRight;
+  },
+  setVolume: function (newVolume) {
+    this.volume = newVolume;
+  },
+  setColor: function (newColor) {
+    this.color = newColor;
+  },
+  setPocketNum: function (newNum) {
+    this.pocketNum = newNum;
   },
 };
