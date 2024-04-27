@@ -38,13 +38,11 @@ backpackForms.forEach((elem) => {
 });
 
 backpackForms.forEach((elem) => {
-  switch (elem.getAttribute("name")) {
-    case "leftStrap":
-      elem.setAttribute("name", "leftStrapForm");
-      break;
-    case "rightStrap":
-      elem.setAttribute("name", "rightStrapForm");
-      break;
+  if (elem.getAttribute("name") == "leftStrap") {
+    elem.setAttribute("name", "leftStrapForm");
+  }
+  if (elem.getAttribute("name") == "rightStrap") {
+    elem.setAttribute("name", "rightStrapForm");
   }
 });
 
