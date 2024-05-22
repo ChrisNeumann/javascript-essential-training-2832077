@@ -24,6 +24,8 @@ const frogpack = {
   },
   lidOpen: false,
   image: "../../assets/images/frog.svg",
+  description:
+    "A green kids backpack designed to make the lid look like the face of a frog sticking out its tongue.",
   toggleLid: function (lidStatus) {
     this.lidOpen = lidStatus;
   },
@@ -33,27 +35,60 @@ const frogpack = {
   },
 };
 
-// Baseline HTML output
-const content = `
-    <h1 class="backpack__name">${frogpack.name}</h1>
+/**
+ * Helper image function
+ *  - Creates new <figure> element
+ *  - Adds <img> markup pointing to frogpack.image
+ *  - Adds <figcaption> element with image description
+ *  - Returns <figure> element to where function is called
+ */
+
+const createFigure = (dataObj) => {
+  let newFigure = document.createElement("figure");
+  let newImg = document.createElement("img");
+  newImg.setAttribute("src", dataObj.image);
+  newImg.setAttribute("alt", "");
+  let newDesc = document.createElement("figcaption");
+  newDesc.innerText = dataObj.description;
+  newFigure.append(newImg, newDesc);
+  return newFigure;
+};
+/**
+ * main Function
+ *  - Creates new <article> element
+ *  - Populates <article> with content (see const content below)
+ *  - Returns <article> element to where function is called
+ */
+
+const createArticle = (backpack) => {
+  // Baseline HTML output
+  const content = `
+    <h1 class="backpack__name">${backpack.name}</h1>
     <ul class="backpack__features">
       <li class="packprop backpack__volume">Volume:<span> ${
-        frogpack.volume
+        backpack.volume
       }l</span></li>
       <li class="packprop backpack__color">Color:<span> ${
-        frogpack.color
+        backpack.color
       }</span></li>
       <li class="packprop backpack__pockets">Number of pockets:<span> ${
-        frogpack.pocketNum
+        backpack.pocketNum
       }</span></li>
       <li class="packprop backpack__strap">Left strap length:<span> ${
-        frogpack.strapLength.left
+        backpack.strapLength.left
       } inches</span></li>
       <li class="packprop backpack__strap">Right strap length:<span> ${
-        frogpack.strapLength.right
+        backpack.strapLength.right
       } inches</span></li>
       <li class="feature backpack__lid">Lid status:<span> ${
-        frogpack.lidOpen ? "open" : "closed"
+        backpack.lidOpen ? "open" : "closed"
       }</span></li>
     </ul>  
 `;
+  let newArticle = document.createElement("article");
+  newArticle.innerHTML = content;
+  newArticle.prepend(createFigure(backpack));
+  return newArticle;
+};
+
+document.querySelector("Main").append(createArticle(frogpack));
